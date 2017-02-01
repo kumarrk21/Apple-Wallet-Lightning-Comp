@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+	<types>
+		<members>ApplePassBookDictionary</members>
+		<members>AppleWalletGenerator</members>
+		<members>AppleWalletSamplePassGenerator</members>
+		<members>HexUtil</members>
+		<members>Puff</members>
+		<members>Zippex</members>
+		<members>ZippexTests</members>
+		<members>AppleWalletCompController</members>
+		<name>ApexClass</name>
+	</types>
+	<types>
+		<members>AppleWalletGenerator</members>
+		<name>ApexPage</name>
+	</types>
+	<types>
+		<members>AppleWalletComponent</members>
+		<members>AppleWalletGeneratorApp</members>
+		<name>AuraDefinitionBundle</name>
+	</types>
+	<types>
+		<members>awresources</members>
+		<name>StaticResource</name>
+	</types>
+	<version>34.0</version>
+</Package>

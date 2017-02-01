@@ -1,0 +1,36 @@
+<aura:component access="GLOBAL" extensible="false" controller="AppleWalletCompController" implements="flexipage:availableForAllPageTypes,force:appHostable">
+	<ltng:require styles="/resource/awresources/slds221.min.css" />
+  <ltng:require scripts="/resource/awresources/sha.js, /resource/awresources/zip.js,/resource/awresources/z-worker.js,/resource/awresources/inflate.js,/resource/awresources/deflate.js" afterScriptsLoaded="{!c.scriptsLoaded}"/>
+	<aura:attribute access="GLOBAL" name="processAtClient" type="Boolean" default="true" />
+	<aura:attribute access="GLOBAL" name="sendPassByEmail" type="Boolean" default="false" />
+	<aura:attribute name="returnPass" type="String"/>
+	<aura:attribute name="passType" type="String"/>
+  <aura:attribute name="manifest" type="Object"/>
+  <aura:attribute name="fileCounter" type="Integer"/>
+  <aura:attribute name="resourceFile" type="Object"/>
+  <aura:attribute name="resourceFiles" type="Object"/>
+	<lightning:spinner aura:id="_spinner" variant="brand" size="large" class="slds-hide"/>
+	
+	
+	<div class="slds-text-heading--large slds-align--absolute-center header slds-p-around--large">Sample Apple Wallet Passes</div>
+	
+	<div class="slds-grid slds-m-around--small">
+    		<lightning:button class="slds-col--padded slds-size--1-of-1" variant="neutral" label="Boarding Pass" onclick="{!c.getBoardingPass}" />        	
+   	</div>
+   	<div class="slds-grid slds-m-around--small">
+    		<lightning:button class="slds-col--padded slds-size--1-of-1" variant="neutral" label="Coupon" onclick="{!c.getCouponPass}" />        	
+   	</div>
+   	<div class="slds-grid slds-m-around--small">
+    		<lightning:button class="slds-col--padded slds-size--1-of-1" variant="neutral" label="Event" onclick="{!c.getEventPass}" />        	
+   	</div>
+   	<div class="slds-grid slds-m-around--small">
+    		<lightning:button class="slds-col--padded slds-size--1-of-1" variant="neutral" label="Generic" onclick="{!c.getGenericPass}" />        	
+   	</div>
+   	<div class="slds-grid slds-m-around--small">
+    		<lightning:button class="slds-col--padded slds-size--1-of-1" variant="neutral" label="Store Card" onclick="{!c.getStoreCardPass}" />        	
+   	</div>
+
+    
+    <iframe src="/resource/awresources/passFrame.html" style="width:100%;" aura:id="_passFrame" frameborder="0" class="slds-hide"></iframe>
+
+</aura:component>

@@ -1,0 +1,26 @@
+<html>
+
+<head>
+    <script>
+    if (window.addEventListener) {
+        // For standards-compliant web browsers
+        window.addEventListener("message", handleMessage, false);
+    } else {
+        window.attachEvent("onmessage", handleMessage);
+    }
+
+    function handleMessage(evt) {
+    	if(typeof evt.data == 'string'){
+    		//document.getElementById('_childFrame').src = 'data:application/vnd.apple.pkpass;base64,'+evt.data;	
+            document.getElementById('_childFrame').src = evt.data;  
+    	}
+    }
+    </script>
+</head>
+
+<body>
+	<p>Loading Pass...<p>
+    <iframe src="" id="_childFrame" style="display:none;"></iframe>
+</body>
+
+</html>
