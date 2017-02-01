@@ -1,4 +1,0 @@
-<apex:page showHeader="false" sidebar="false"  standardStylesheets="false" controller="AppleWalletGenerator" >
-	<p>Loading Pass..</p>
-	<iframe src="data:application/vnd.apple.pkpass;base64,{!passContent}" style="width:100%;" id="frame" frameborder="0"></iframe>
-</apex:page>
