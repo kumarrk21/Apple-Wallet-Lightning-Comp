@@ -15,6 +15,40 @@ global class AppleWalletGenerator {
 		resourceBlob = [Select VersionData from ContentVersion where ContentDocumentId=:ws.Wallet_Resources_ID__c LIMIT 1].VersionData;
 	}
 
+	public returnMessage sendPassByEmail(String emailID, Blob passFile){
+		returnMessage ret = new returnMessage();
+		ret.success = true;
+		ret.message = 'Email Successfully Sent';
+		try{
+			List<Messaging.SingleEmailMessage> emails = new List<Messaging.SingleEmailMessage>();
+			Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
+			
+			List<String> sendTo = new List<String>();
+			sendTo.add(emailID);
+
+			List<Messaging.EmailFileAttachment> atts = new List<Messaging.EmailFileAttachment>();
+			Messaging.EmailFileAttachment att = new Messaging.EmailFileAttachment();
+			att.setBody(passFile);
+			att.setFileName('Pass.pkpass');
+			att.setInline(false);
+			atts.add(att);
+
+			email.setPlainTextBody('Pass file enclosed');
+			email.setSubject('Sample apple wallet pass');
+			email.setToAddresses(sendTo);
+			email.setFileAttachments(atts);
+
+			emails.add(email);
+			Messaging.sendEmail(emails);	
+			}catch(Exception e){
+				ret.success = false;
+				ret.message = 'Error in sending email - ' + e.getMessage() + 'at Line number ' + e.getLineNumber();
+			}
+		
+
+		return ret;
+	}
+
 	public Blob getpkpassFile(string pass, Blob resourceBlob){
 		Zippex zipFile = new Zippex(resourceBlob);
 		Set <String> fileNames = zipFile.getFileNames();
@@ -60,6 +94,11 @@ global class AppleWalletGenerator {
 	    return res.getBodyAsBlob();
 
 	}
+
+	public class returnMessage{
+		public Boolean success{get;set;}
+		public String message{get;set;}
+	} 
 
 
 }

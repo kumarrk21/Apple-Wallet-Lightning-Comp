@@ -12,8 +12,20 @@
     },
 
 	toggleProcessAtClient: function(cmp,evt,helper){
-		cmp.set('v.processAtClient',evt.target.checked);
+        cmp.set('v.processAtClient',cmp.find('processAtClient').get('v.checked'));
+        console.log('Process at client',cmp.get('v.processAtClient'));
 	},
+
+    toggleEmailIDInput: function(cmp,evt,helper){
+        var sendPassByEmail = cmp.find('sendPassByEmail').get('v.checked')
+        cmp.set('v.sendPassByEmail',sendPassByEmail);
+        //cmp.set('v.emailRequired',sendPassByEmail);
+        if(sendPassByEmail){
+            $A.util.removeClass(cmp.find('_emailDiv'), "slds-hide")
+        }else{
+            $A.util.addClass(cmp.find('_emailDiv'), "slds-hide")
+        }
+    },
 
 
     getCouponPass: function(cmp, evt, helper) {
@@ -22,7 +34,7 @@
     },
 
     getBoardingPass: function(cmp,evt,helper){
-    	cmp.set('v.passType','BoardingPass');
+        cmp.set('v.passType','BoardingPass');
     	helper.getPass(cmp, evt);
     },
 

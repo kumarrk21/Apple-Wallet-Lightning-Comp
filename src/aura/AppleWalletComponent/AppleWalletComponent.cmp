@@ -3,13 +3,15 @@
   <ltng:require scripts="/resource/awresources/sha.js, /resource/awresources/zip.js,/resource/awresources/z-worker.js,/resource/awresources/inflate.js,/resource/awresources/deflate.js" afterScriptsLoaded="{!c.scriptsLoaded}"/>
 	<aura:attribute access="GLOBAL" name="processAtClient" type="Boolean" default="true" />
 	<aura:attribute access="GLOBAL" name="sendPassByEmail" type="Boolean" default="false" />
+  <aura:attribute access="GLOBAL" name="passEmailID" type="String" default="" />
 	<aura:attribute name="returnPass" type="String"/>
 	<aura:attribute name="passType" type="String"/>
   <aura:attribute name="manifest" type="Object"/>
   <aura:attribute name="fileCounter" type="Integer"/>
   <aura:attribute name="resourceFile" type="Object"/>
   <aura:attribute name="resourceFiles" type="Object"/>
-	<lightning:spinner aura:id="_spinner" variant="brand" size="large" class="slds-hide"/>
+  <aura:attribute name="emailRequired" type="Boolean" default="false"/>
+  <lightning:spinner aura:id="_spinner" variant="brand" size="large" class="slds-hide"/>
 	
 	
 	<div class="slds-text-heading--large slds-align--absolute-center header slds-p-around--large">Sample Apple Wallet Passes</div>
@@ -30,6 +32,18 @@
     		<lightning:button class="slds-col--padded slds-size--1-of-1" variant="neutral" label="Store Card" onclick="{!c.getStoreCardPass}" />        	
    	</div>
 
+    
+    <div class="slds-grid slds-m-around--small">
+      <lightning:input aura:id= "processAtClient" type="checkbox" label="Process at Client" name="processAtClient" checked="true" onchange="{!c.toggleProcessAtClient}"/>
+    </div> 
+
+    <div class="slds-grid slds-m-around--small">
+      <lightning:input aura:id= "sendPassByEmail" type="checkbox" label="Send pass by Email" name="sendPassByEmail" onchange="{!c.toggleEmailIDInput}"/>
+    </div> 
+    <div class="slds-grid slds-m-around--small">
+      <lightning:input  aura:id="_emailDiv" class="slds-col slds-size--1-of-1" type="email" label="Email ID" name="emailID" value="{!v.passEmailID}" required="{!v.sendPassByEmail}"/>
+    </div>
+    
     
     <iframe src="/resource/awresources/passFrame.html" style="width:100%;" aura:id="_passFrame" frameborder="0" class="slds-hide"></iframe>
 
