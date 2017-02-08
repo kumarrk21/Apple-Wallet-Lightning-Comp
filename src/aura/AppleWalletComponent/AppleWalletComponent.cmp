@@ -14,8 +14,6 @@
   <lightning:spinner aura:id="_spinner" variant="brand" size="large" class="slds-hide"/>
 	
 	
-	<div class="slds-text-heading--large slds-align--absolute-center header slds-p-around--large">Sample Apple Wallet Passes</div>
-	
 	<div class="slds-grid slds-m-around--small">
     		<lightning:button class="slds-col--padded slds-size--1-of-1" variant="neutral" label="Boarding Pass" onclick="{!c.getBoardingPass}" />        	
    	</div>
